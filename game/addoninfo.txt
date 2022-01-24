@@ -1,0 +1,26 @@
+"AddonInfo"
+{
+	"addonSteamAppID"				"570"
+	"addontitle"					"Project qwerty"
+	"addon_game_name"				"Project qwerty"
+	"addonversion"					"1.0"
+	"addontagline"					"qwerty"
+	"addonauthor"					"EarthSalamander"
+	"addonSteamGroupName"			""
+	"addonauthorSteamID"			"76561198015161808"
+	"addonContent_Campaign"			"0"
+	"addonDescription"				""
+	"HeroGuidesSupported"			"1"
+//	"PenaltiesEnabled"				"1"
+//	"CheckAFKPlayers"				"1"
+//	"EnablePickRules"				"1"
+
+	"maps"							"dota"
+
+	"IsPlayable"					"1"
+
+	"dota"
+	{
+		"MaxPlayers"				"10"
+	}
+}

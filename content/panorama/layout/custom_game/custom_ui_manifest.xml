@@ -1,0 +1,55 @@
+<root> 
+	<script>
+		GameEvents.Subscribe("CreateIngameErrorMessage", function(data) 
+		{
+			GameEvents.SendEventClientSide("dota_hud_error_message", 
+			{
+				"splitscreenplayer": 0,
+				"reason": data.reason || 80,
+				"message": data.message
+			})
+		})
+
+//		GameUI.CustomUIConfig().team_colors = {}
+//		GameUI.CustomUIConfig().team_names = {}
+
+//		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "#08640E;"; // Format this later using rgbtohex lib, and taking team color in settings.lua
+//		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_BADGUYS] = "#640808;"; // Format this later using rgbtohex lib, and taking team color in settings.lua
+
+//		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "Radiant";
+//		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_BADGUYS] = "Dire";
+
+		var PreGame = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame");
+
+		HidePickScreen();
+
+		function HidePickScreen() {
+			if (!Game.GameStateIs(3)) {
+				PreGame.style.opacity = "0";
+				$.Schedule(0.25, HidePickScreen);
+			}
+			else {
+				PreGame.style.opacity = "1";				
+			}
+		}
+/*
+		// Enable Hero bio + Disable not-working Dota Plus feature
+		if (PreGame.FindChildTraverse("BattlePassHeroUpsell")) {
+			PreGame.FindChildTraverse("BattlePassHeroUpsell").style.visibility = "collapse";
+			PreGame.FindChildTraverse("FriendsAndFoes").style.height = "205px";
+			PreGame.FindChildTraverse("FriendsAndFoes").style.padding = "0px 0px";
+			
+			if (PreGame && PreGame.FindChildTraverse("BattlePassHeroData"))
+				PreGame.FindChildTraverse("BattlePassHeroData").style.visibility = "collapse";
+		}
+*/
+	</script>
+
+	<Panel>
+		<!-- CustomUIElements go here.-->
+		<CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/vanilla_hero_selection.xml" /> 
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" /> 
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud_hero_demo.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/selection.xml" />
+	</Panel>
+</root>
